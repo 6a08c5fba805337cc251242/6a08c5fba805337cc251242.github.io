@@ -10,6 +10,105 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Neovim aesthetic overrides & additions */
+    .nvim-window {
+      background: #181825;
+      border: 1px solid #313244;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      width: 100%;
+      max-width: 520px;
+    }
+    .nvim-tabline {
+      background: #11111b;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      height: 34px;
+      border-bottom: 1px solid #313244;
+      color: #6c7086;
+      font-size: 12px;
+    }
+    .nvim-tab {
+      background: #181825;
+      color: #cdd6f4;
+      padding: 6px 14px;
+      border-top: 2px solid #89b4fa;
+      border-right: 1px solid #313244;
+      border-left: 1px solid #313244;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nvim-body {
+      display: flex;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      min-height: 240px;
+    }
+    .nvim-sidebar {
+      background: #181825;
+      border-right: 1px solid #313244;
+      padding: 12px 8px;
+      color: #585b70;
+      font-size: 12px;
+      user-select: none;
+      min-width: 130px;
+    }
+    .nvim-sidebar .dir {
+      color: #89b4fa;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .nvim-sidebar .file {
+      padding-left: 12px;
+      color: #a6e3a1;
+    }
+    .nvim-code-area {
+      padding: 12px 16px;
+      overflow-x: auto;
+      flex-grow: 1;
+      line-height: 1.6;
+    }
+    .nvim-row {
+      display: flex;
+    }
+    .nvim-ln {
+      color: #585b70;
+      text-align: right;
+      padding-right: 16px;
+      user-select: none;
+    }
+    .nvim-statusline {
+      background: #11111b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 12px;
+      font-size: 11px;
+      border-top: 1px solid #313244;
+      color: #a6adc8;
+    }
+    .status-mode {
+      background: #89b4fa;
+      color: #11111b;
+      padding: 2px 6px;
+      font-weight: 700;
+      border-radius: 2px;
+      margin-right: 8px;
+    }
+    .c-keyword { color: #cba6f7; }
+    .c-class { color: #f9e2af; }
+    .c-string { color: #a6e3a1; }
+    .c-func { color: #89b4fa; }
+    .c-comment { color: #6c7086; font-style: italic; }
+  </style>
 </head>
 <body>
   <div class="topline"></div>
@@ -24,34 +123,51 @@
   <main>
     <section class="hero shell" id="home">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span>Scalable software solutions<span class="eyebrow-line"></span></div>
+        <div class="eyebrow"><span class="status-dot"></span> Scalable software solutions <span class="eyebrow-line"></span></div>
         <h1>Bukkit Plugin Development<br><span class="accent"></span></h1>
-        <p class="hero-lede">Specialising in both kotlin and java for paper plugin development.</p>
+        <p class="hero-lede">Specialising in both Kotlin and Java for high-performance Paper plugin development.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#home">Get in touch <span>↘</span></a>
+          <a class="button button-primary" href="#home">Get in touch <span>↗</span></a>
         </div>
-        </div>
-      <div class="hero-art" aria-label="Decorative code window">
-        <div class="code-window">
-          <div class="window-bar"><div class="window-dots"><i></i><i></i><i></i></div><span>Plugin.java</span><span class="window-state">● synced</span></div>
-          <div class="code-body">
-            <div class="code-row"><span class="ln">01</span><code><b class="purple">public final class</b> <b class="green">Plugin</b> {</code></div>
-            <div class="code-row"><span class="ln">02</span><code>&nbsp;&nbsp;<b class="purple">public void</b> onEnable() {</code></div>
-            <div class="code-row"><span class="ln">03</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<b class="blue"></b>instance = this;</code></div>
-            <div class="code-row"><span class="ln">04</span><code>&nbsp;&nbsp;&nbsp;&nbsp;Bukkit.getConsoleSender().<b class="blue">sendMessage</b>("Loaded server!");</code></div>
-            <div class="code-row"><span class="ln">05</span><code>&nbsp;&nbsp;}</code></div>
-            <div class="code-row"><span class="ln">06</span><code>}</code></div>
-            <div class="code-cursor"></div>
+      </div>
+      <div class="hero-art" aria-label="Neovim editor interface">
+        <div class="nvim-window">
+          <div class="nvim-tabline">
+            <div class="nvim-tab"><span>📄 Plugin.kt</span></div>
           </div>
-          <div class="window-footer"><span>JAVA</span><span>UTF-8</span><span>LF</span><span class="footer-right">BUILD SUCCESSFUL <b>✓</b></span></div>
+          <div class="nvim-body">
+            <div class="nvim-sidebar">
+              <div class="dir">📁 src/main/kotlin</div>
+              <div class="file">📄 Plugin.kt</div>
+              <div class="file" style="color: #6c7086;">📄 Config.kt</div>
+            </div>
+            <div class="nvim-code-area">
+              <div class="nvim-row"><span class="nvim-ln">1</span><code><span class="c-keyword">package</span> io.turbo.plugin</code></div>
+              <div class="nvim-row"><span class="nvim-ln">2</span><code></code></div>
+              <div class="nvim-row"><span class="nvim-ln">3</span><code><span class="c-keyword">class</span> <span class="c-class">Plugin</span> : <span class="c-class">JavaPlugin</span>() {</code></div>
+              <div class="nvim-row"><span class="nvim-ln">4</span><code>&nbsp;&nbsp;<span class="c-keyword">override fun</span> <span class="c-func">onEnable</span>() {</code></div>
+              <div class="nvim-row"><span class="nvim-ln">5</span><code>&nbsp;&nbsp;&nbsp;&nbsp;logger.info(<span class="c-string">"System operational."</span>)</code></div>
+              <div class="nvim-row"><span class="nvim-ln">6</span><code>&nbsp;&nbsp;}</code></div>
+              <div class="nvim-row"><span class="nvim-ln">7</span><code>}</code></div>
+            </div>
+          </div>
+          <div class="nvim-statusline">
+            <div><span class="status-mode">NORMAL</span> <span>lua/plugin.kt</span></div>
+            <div>utf-8 │ kotlin │ 7:1</div>
+          </div>
         </div>
         <div class="art-note note-top"><span class="note-symbol">✳</span> purpose-built systems</div>
         <div class="art-note note-bottom"><span class="note-symbol">⌘</span> less noise. more craft.</div>
         <div class="art-grid"></div>
       </div>
-     </section>
+    </section>
   </main>
-  <footer class="footer shell"><a class="brand footer-brand" href="#home"><span class="brand-mark">T<span>_</span></span><span>turbomaxe<span class="muted">.dev</span></span></a><span class="footer-note">DESIGNED IN TEXT. BUILT WITH PURPOSE.</span><a class="back-top" href="#home">BACK TO TOP ↑</a><span class="copyright">© <span id="year"></span> TURBOMAXE</span></footer>
+  <footer class="footer shell">
+    <a class="brand footer-brand" href="#home"><span class="brand-mark">T<span>_</span></span><span>turbomaxe<span class="muted">.dev</span></span></a>
+    <span class="footer-note">DESIGNED IN TEXT. BUILT WITH PURPOSE.</span>
+    <a class="back-top" href="#home">BACK TO TOP ↑</a>
+    <span class="copyright">© <span id="year"></span> TURBOMAXE</span>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
