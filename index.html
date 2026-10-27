@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,9 +19,12 @@
       --fg: #d4d4d4;
       --muted: #858585;
       --border: #2c2c2c;
-      --accent: #ffffff;
+      --accent: #a8b9cc;
       --green: #9bb99b;
       --yellow: #ffd166;
+      --string: #6aabdf;
+      --property: #9876aa;
+      --orange: #cc7832;
     }
 
     * {
@@ -57,7 +61,8 @@
       padding: 20px;
     }
 
-    /* Header / Nav */
+    /* Header / Navigation */
+
     header {
       border-bottom: 1px solid var(--border);
       padding-bottom: 12px;
@@ -76,7 +81,8 @@
       color: var(--muted);
     }
 
-    /* Hero / Content */
+    /* Main Content */
+
     main {
       flex: 1;
     }
@@ -109,6 +115,8 @@
       border-radius: 50%;
     }
 
+    /* Syntax-highlighted Metadata */
+
     .meta-list {
       border: 1px solid var(--border);
       background: var(--bg-dark);
@@ -130,7 +138,24 @@
       flex-shrink: 0;
     }
 
-    /* Neovim Command Line Style Footer Bar */
+    .string {
+      color: var(--string);
+    }
+
+    .property {
+      color: var(--property);
+    }
+
+    .keyword {
+      color: var(--orange);
+    }
+
+    .punctuation {
+      color: var(--fg);
+    }
+
+    /* Neovim-style Status Line */
+
     .cmd-line {
       background: var(--bg-dark);
       border-top: 1px solid var(--border);
@@ -149,6 +174,8 @@
       padding: 0 6px;
       font-weight: 700;
     }
+
+    /* Footer */
 
     footer {
       padding-top: 20px;
@@ -179,11 +206,16 @@
 
 <body>
   <div class="shell">
+
     <header>
-      <div class="brand">dev<span> portfolio</span></div>
+      <div class="brand">turbomaxe<span>.dev</span></div>
 
       <nav>
-        <a href="https://github.com/TurboMaxe" target="_blank" rel="noopener noreferrer">github ↗</a>
+        <a
+          href="https://github.com/TurboMaxe"
+          target="_blank"
+          rel="noopener noreferrer"
+        >github ↗</a>
       </nav>
     </header>
 
@@ -195,22 +227,50 @@
 
       <h1>Bukkit Plugin Development</h1>
 
-      <p>Primarily focusing on Kotlin and Java projects involving scalable software systems.</p>
+      <p>
+        Primarily focusing on Kotlin and Java projects involving scalable
+        software systems.
+      </p>
 
       <ul class="meta-list">
+
         <li>
-          <span class="meta-key">langs[]</span>
-          <span>{"Java", "Kotlin", "C", "JavaScript"};</span>
+          <span class="meta-key">stack[]</span>
+          <span>
+            <span class="punctuation">{</span>
+            <span class="string">"Java"</span><span class="punctuation">, </span>
+            <span class="string">"Kotlin"</span><span class="punctuation">, </span>
+            <span class="string">"Paper API"</span>
+            <span class="punctuation">}</span>
+          </span>
         </li>
+
         <li>
-          <span class="meta-key">skills[]</span>
-          <span>{"Git", "Gradle", "CI/CD"};</span>
+          <span class="meta-key">focus</span>
+          <span>Modular software utilising domains.</span>
         </li>
+
+        <li>
+          <span class="meta-key">other[]</span>
+          <span>
+            <span class="punctuation">{</span>
+            <span class="string">"Git"</span><span class="punctuation">, </span>
+            <span class="string">"Gradle"</span><span class="punctuation">, </span>
+            <span class="string">"C"</span><span class="punctuation">, </span>
+            <span class="string">"Lua"</span><span class="punctuation">, </span>
+            <span class="string">"Linux"</span>
+            <span class="punctuation">}</span>
+          </span>
+        </li>
+
       </ul>
     </main>
 
     <div class="cmd-line">
-      <div><span class="cmd-mode">NORMAL</span> <span>index.html</span></div>
+      <div>
+        <span class="cmd-mode">NORMAL</span>
+        <span>index.html</span>
+      </div>
       <div>utf-8 [unix]</div>
     </div>
 
@@ -218,6 +278,7 @@
       <a href="mailto:contact@turbomaxe.dev">Scalable Software Solutions</a>
       <a href="mailto:contact@turbomaxe.dev">contact@turbomaxe.dev</a>
     </footer>
+
   </div>
 </body>
 </html>
