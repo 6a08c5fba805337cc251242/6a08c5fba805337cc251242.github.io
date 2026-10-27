@@ -1,196 +1,787 @@
-<!doctype html>
+```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#181825">
-  <meta name="description" content="TurboMaxe — Bukkit & Paper Plugin Development">
-  <title>turbomaxe.dev</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #181825;
-      --bg-dark: #11111b;
-      --fg: #cdd6f4;
-      --muted: #6c7086;
-      --border: #313244;
-      --accent: #89b4fa;
-      --green: #a6e3a1;
-      --yellow: #f9e2af;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2b2b2b">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <title>TurboMaxe — Minecraft Plugin Developer</title>
+    <meta
+        name="description"
+        content="TurboMaxe — Bukkit and Paper plugin developer building tools, libraries, and custom Minecraft server systems."
+    >
 
-    body {
-      background-color: var(--bg);
-      color: var(--fg);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    a:hover {
-      text-decoration: underline;
-    }
+    <style>
+        @font-face {
+            font-family: "Agave";
+            src: local("Agave");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
 
-    .shell {
-      max-width: 800px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 20px;
-    }
+        :root {
+            color-scheme: dark;
 
-    /* Header / Nav */
-    header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+            /* JetBrains Darcula-inspired palette */
+            --bg: #2b2b2b;
+            --surface: #313335;
+            --surface-hover: #383a3c;
+            --border: #454749;
 
-    .brand {
-      font-weight: 700;
-      color: var(--fg);
-    }
+            --text: #a9b7c6;
+            --text-bright: #e8e8e8;
+            --text-muted: #808890;
 
-    .brand span {
-      color: var(--muted);
-    }
+            --accent: #ffc66d;
+            --green: #6aab73;
+            --blue: #6897bb;
+            --purple: #9876aa;
 
-    /* Hero / Content */
-    main {
-      flex: 1;
-    }
+            --font-display: "Agave", "JetBrains Mono", monospace;
+            --font-mono: "JetBrains Mono", monospace;
 
-    h1 {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--fg);
-    }
+            --content-width: 860px;
+        }
 
-    p {
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-    .status-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--green);
-      margin-bottom: 16px;
-    }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 32px;
+        }
 
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background-color: var(--green);
-      border-radius: 50%;
-    }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.9;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .meta-list {
-      border: 1px solid var(--border);
-      background: var(--bg-dark);
-      padding: 16px;
-      border-radius: 4px;
-      margin-bottom: 24px;
-      list-style: none;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .meta-list li {
-      display: flex;
-      gap: 12px;
-      font-size: 13px;
-    }
+        a:focus-visible {
+            outline: 1px solid var(--accent);
+            outline-offset: 5px;
+        }
 
-    .meta-key {
-      color: var(--yellow);
-      width: 90px;
-    }
+        button,
+        input {
+            font: inherit;
+        }
 
-    /* Neovim Command Line Style Footer Bar */
-    .cmd-line {
-      background: var(--bg-dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 6px 12px;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      margin-top: 40px;
-    }
+        ::selection {
+            background: #515151;
+            color: var(--text-bright);
+        }
 
-    .cmd-mode {
-      background: var(--accent);
-      color: var(--bg-dark);
-      padding: 0 6px;
-      font-weight: 700;
-    }
+        .container {
+            width: min(var(--content-width), calc(100% - 40px));
+            margin-inline: auto;
+        }
 
-    footer {
-      padding-top: 20px;
-      font-size: 12px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-    }
-  </style>
+        /* Header */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            color: var(--text-bright);
+            font-family: var(--font-display);
+            font-size: 19px;
+            letter-spacing: -0.8px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            transition: color 150ms ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-bright);
+        }
+
+        .github-link {
+            color: var(--accent);
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 94px 0 76px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 26px;
+            color: var(--green);
+            font-size: 11px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            flex: 0 0 7px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 700px;
+            margin-bottom: 24px;
+            color: var(--text-bright);
+            font-family: var(--font-display);
+            font-size: clamp(34px, 6vw, 55px);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -2px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin-bottom: 30px;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .hero-description strong {
+            color: var(--text-bright);
+            font-weight: 500;
+        }
+
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 38px;
+            padding: 7px 13px;
+            border: 1px solid var(--border);
+            color: var(--text);
+            transition:
+                background 150ms ease,
+                border-color 150ms ease,
+                color 150ms ease;
+        }
+
+        .button:hover {
+            border-color: var(--text-muted);
+            background: var(--surface);
+            color: var(--text-bright);
+        }
+
+        .button-primary {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .button-primary:hover {
+            border-color: var(--accent);
+            background: #3a3630;
+            color: var(--accent);
+        }
+
+        /* Sections */
+
+        .section {
+            padding: 42px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 27px;
+        }
+
+        .section-number {
+            color: var(--accent);
+            font-size: 11px;
+        }
+
+        .section-title {
+            margin: 0;
+            color: var(--text-bright);
+            font-family: var(--font-display);
+            font-size: 23px;
+            font-weight: 400;
+            letter-spacing: -0.7px;
+        }
+
+        .section-description {
+            max-width: 650px;
+            margin-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        /* Projects */
+
+        .project-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .project {
+            padding: 20px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition:
+                border-color 150ms ease,
+                background 150ms ease;
+        }
+
+        .project:hover {
+            border-color: #626568;
+            background: var(--surface-hover);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            margin: 0;
+            color: var(--text-bright);
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 400;
+        }
+
+        .project-type {
+            padding: 2px 7px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .project-description {
+            max-width: 650px;
+            margin-bottom: 17px;
+            color: var(--text);
+            font-size: 12px;
+        }
+
+        .project-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            color: var(--blue);
+            font-size: 11px;
+        }
+
+        .tag::before {
+            content: "#";
+            color: var(--text-muted);
+        }
+
+        .project-link {
+            color: var(--accent);
+            font-size: 11px;
+        }
+
+        .project-link:hover {
+            color: var(--text-bright);
+        }
+
+        /* Stack */
+
+        .stack-list {
+            display: grid;
+            grid-template-columns: 125px 1fr;
+            border-top: 1px solid var(--border);
+        }
+
+        .stack-row {
+            display: contents;
+        }
+
+        .stack-label,
+        .stack-value {
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stack-label {
+            color: var(--text-muted);
+        }
+
+        .stack-value {
+            color: var(--text);
+        }
+
+        /* About */
+
+        .about-text {
+            max-width: 700px;
+            margin-bottom: 16px;
+        }
+
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .inline-code {
+            padding: 2px 5px;
+            background: var(--surface);
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        /* Contact */
+
+        .contact-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .contact-title {
+            margin-bottom: 5px;
+            color: var(--text-bright);
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 400;
+        }
+
+        .contact-description {
+            margin-bottom: 0;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .contact-email {
+            color: var(--accent);
+            overflow-wrap: anywhere;
+        }
+
+        /* Footer / Neovim statusline */
+
+        .footer {
+            margin-top: 35px;
+            padding-bottom: 32px;
+        }
+
+        .statusline {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 5px 10px;
+            background: #383a3c;
+            color: var(--text);
+            font-size: 10px;
+        }
+
+        .status-mode {
+            padding: 0 8px;
+            background: var(--accent);
+            color: #2b2b2b;
+            font-weight: 700;
+        }
+
+        .status-right {
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 16px;
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--text-bright);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 600px) {
+            .container {
+                width: min(100% - 28px, var(--content-width));
+            }
+
+            .header {
+                align-items: flex-start;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 10px 14px;
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 65px 0 55px;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .project {
+                padding: 15px;
+            }
+
+            .project-top {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .stack-list {
+                grid-template-columns: 100px 1fr;
+                font-size: 11px;
+            }
+
+            .contact-box {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .statusline {
+                font-size: 9px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-<body>
 
-  <div class="shell">
-    <header>
-      <div class="brand">turbomaxe<span>.dev</span></div>
-      <nav>
-        <a href="https://github.com/TurboMaxe" target="_blank" rel="noreferrer">github ↗</a>
-      </nav>
+<body>
+    <header class="container header">
+        <a class="brand" href="#" aria-label="TurboMaxe home">
+            TurboMaxe<span style="color: var(--accent)">.</span>
+        </a>
+
+        <nav class="header-right" aria-label="Main navigation">
+            <a class="nav-link" href="#projects">projects</a>
+            <a class="nav-link" href="#about">about</a>
+            <a class="nav-link" href="#contact">contact</a>
+            <a
+                class="nav-link github-link"
+                href="https://github.com/TurboMaxe"
+                target="_blank"
+                rel="noopener noreferrer"
+            >github ↗</a>
+        </nav>
     </header>
 
-    <main>
-      <div class="status-bar">
-        <span class="status-dot"></span>
-        <span>available for projects</span>
-      </div>
+    <main class="container">
+        <section class="hero" id="home">
+            <div class="eyebrow">
+                <span class="status-dot" aria-hidden="true"></span>
+                available for projects
+            </div>
 
-      <h1>Bukkit & Paper Plugin Development</h1>
-      <p>Specializing in Kotlin and Java systems for server-side engineering.</p>
+            <h1>Bukkit &amp; Paper<br>Plugin Development.</h1>
 
-      <ul class="meta-list">
-        <li><span class="meta-key">stack</span> <span>Java, Kotlin, Paper API</span></li>
-        <li><span class="meta-key">focus</span> <span>Performance, Maintainability, Custom Logic</span></li>
-      </ul>
+            <p class="hero-description">
+                Hey, I'm <strong>TurboMaxe</strong> — a developer building
+                Minecraft server plugins, developer tools, and systems with
+                <strong>Java</strong> and <strong>Kotlin</strong>.
+                I enjoy working close to the platform, designing APIs,
+                and making things that are useful.
+            </p>
+
+            <div class="hero-links">
+                <a class="button button-primary" href="#projects">
+                    view projects <span aria-hidden="true">↓</span>
+                </a>
+
+                <a
+                    class="button"
+                    href="https://github.com/TurboMaxe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub ↗
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="section-heading">
+                <span class="section-number">01.</span>
+                <h2 class="section-title">Selected Projects</h2>
+            </div>
+
+            <p class="section-description">
+                A few things I've been building. Explore the source code
+                and development progress on GitHub.
+            </p>
+
+            <div class="project-list">
+                <article class="project">
+                    <div class="project-top">
+                        <h3 class="project-title">TuffXPlus</h3>
+                        <span class="project-type">PLUGIN / API</span>
+                    </div>
+
+                    <p class="project-description">
+                        A Minecraft server development project focused on
+                        reusable functionality, integrations, and building
+                        a more convenient plugin development experience.
+                    </p>
+
+                    <div class="project-bottom">
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Paper</span>
+                            <span class="tag">Gradle</span>
+                        </div>
+
+                        <a
+                            class="project-link"
+                            href="https://github.com/TurboMaxe/TuffXPlus"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >source ↗</a>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-top">
+                        <h3 class="project-title">Font Toolkit</h3>
+                        <span class="project-type">LIBRARY</span>
+                    </div>
+
+                    <p class="project-description">
+                        Experiments with custom text styling, font mappings,
+                        Unicode characters, and reusable font utilities
+                        for Minecraft-related projects.
+                    </p>
+
+                    <div class="project-bottom">
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Unicode</span>
+                            <span class="tag">Fonts</span>
+                        </div>
+
+                        <a
+                            class="project-link"
+                            href="https://github.com/TurboMaxe"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >browse GitHub ↗</a>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-top">
+                        <h3 class="project-title">RealmScript</h3>
+                        <span class="project-type">LANGUAGE</span>
+                    </div>
+
+                    <p class="project-description">
+                        An experimental scripting-language project exploring
+                        lexical analysis, tokenization, parsing, and eventual
+                        execution in a Bukkit server environment.
+                    </p>
+
+                    <div class="project-bottom">
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Lexer</span>
+                            <span class="tag">Parsing</span>
+                        </div>
+
+                        <a
+                            class="project-link"
+                            href="https://github.com/TurboMaxe"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >browse GitHub ↗</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="stack">
+            <div class="section-heading">
+                <span class="section-number">02.</span>
+                <h2 class="section-title">Tech Stack</h2>
+            </div>
+
+            <div class="stack-list">
+                <div class="stack-row">
+                    <div class="stack-label">Languages</div>
+                    <div class="stack-value">Java, Kotlin, C, Lua</div>
+                </div>
+
+                <div class="stack-row">
+                    <div class="stack-label">Minecraft</div>
+                    <div class="stack-value">Bukkit, Paper, Spigot</div>
+                </div>
+
+                <div class="stack-row">
+                    <div class="stack-label">Build tools</div>
+                    <div class="stack-value">Gradle, Kotlin DSL</div>
+                </div>
+
+                <div class="stack-row">
+                    <div class="stack-label">Environment</div>
+                    <div class="stack-value">Windows, Neovim, Git</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="section-heading">
+                <span class="section-number">03.</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+
+            <p class="about-text">
+                I'm interested in backend development, plugin architecture,
+                APIs, programming languages, and understanding how software
+                works under the hood.
+            </p>
+
+            <p class="about-text">
+                Most of my work revolves around the Minecraft ecosystem,
+                particularly the Bukkit and Paper APIs. Outside of that,
+                I like experimenting with lower-level programming and
+                customizing my development environment.
+            </p>
+
+            <p class="about-text">
+                Current focus:
+                <code class="inline-code">Java</code>,
+                <code class="inline-code">Kotlin</code>,
+                and building better developer tools.
+            </p>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="section-heading">
+                <span class="section-number">04.</span>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+
+            <div class="contact-box">
+                <div>
+                    <h3 class="contact-title">Have something in mind?</h3>
+                    <p class="contact-description">
+                        Feel free to reach out about projects or collaboration.
+                    </p>
+                </div>
+
+                <a class="contact-email" href="mailto:contact@turbomaxe.dev">
+                    contact@turbomaxe.dev ↗
+                </a>
+            </div>
+        </section>
     </main>
 
-    <div class="cmd-line">
-      <div><span class="cmd-mode">NORMAL</span> <span>index.html</span></div>
-      <div>utf-8 [unix]</div>
-    </div>
+    <footer class="container footer">
+        <div class="statusline">
+            <span>
+                <span class="status-mode">NORMAL</span>
+                &nbsp; index.html
+            </span>
 
-    <footer>
-      <span>© TURBOMAXE</span>
-      <a href="mailto:contact@turbomaxe.dev">contact@turbomaxe.dev</a>
+            <span class="status-right">utf-8 · html</span>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="year"></span> TurboMaxe</span>
+            <span>built with care · no gradients</span>
+            <a href="#home">back to top ↑</a>
+        </div>
     </footer>
-  </div>
 
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
 </body>
 </html>
+```
