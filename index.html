@@ -3,171 +3,194 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101110">
-  <meta name="description" content="Minecraft developer portfolio — plugins, systems, and server-side engineering.">
-  <title>Bukkit Development</title>
+  <meta name="theme-color" content="#181825">
+  <meta name="description" content="TurboMaxe — Bukkit & Paper Plugin Development">
+  <title>turbomaxe.dev</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Neovim aesthetic overrides & additions */
-    .nvim-window {
-      background: #181825;
-      border: 1px solid #313244;
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    :root {
+      --bg: #181825;
+      --bg-dark: #11111b;
+      --fg: #cdd6f4;
+      --muted: #6c7086;
+      --border: #313244;
+      --accent: #89b4fa;
+      --green: #a6e3a1;
+      --yellow: #f9e2af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+      justify-content: space-between;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      max-width: 800px;
       width: 100%;
-      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px;
     }
-    .nvim-tabline {
-      background: #11111b;
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      height: 34px;
-      border-bottom: 1px solid #313244;
-      color: #6c7086;
-      font-size: 12px;
-    }
-    .nvim-tab {
-      background: #181825;
-      color: #cdd6f4;
-      padding: 6px 14px;
-      border-top: 2px solid #89b4fa;
-      border-right: 1px solid #313244;
-      border-left: 1px solid #313244;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .nvim-body {
-      display: flex;
-      background: #1e1e2e;
-      color: #cdd6f4;
-      min-height: 240px;
-    }
-    .nvim-sidebar {
-      background: #181825;
-      border-right: 1px solid #313244;
-      padding: 12px 8px;
-      color: #585b70;
-      font-size: 12px;
-      user-select: none;
-      min-width: 130px;
-    }
-    .nvim-sidebar .dir {
-      color: #89b4fa;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .nvim-sidebar .file {
-      padding-left: 12px;
-      color: #a6e3a1;
-    }
-    .nvim-code-area {
-      padding: 12px 16px;
-      overflow-x: auto;
-      flex-grow: 1;
-      line-height: 1.6;
-    }
-    .nvim-row {
-      display: flex;
-    }
-    .nvim-ln {
-      color: #585b70;
-      text-align: right;
-      padding-right: 16px;
-      user-select: none;
-    }
-    .nvim-statusline {
-      background: #11111b;
+
+    /* Header / Nav */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 12px;
-      font-size: 11px;
-      border-top: 1px solid #313244;
-      color: #a6adc8;
     }
-    .status-mode {
-      background: #89b4fa;
-      color: #11111b;
-      padding: 2px 6px;
+
+    .brand {
       font-weight: 700;
-      border-radius: 2px;
-      margin-right: 8px;
+      color: var(--fg);
     }
-    .c-keyword { color: #cba6f7; }
-    .c-class { color: #f9e2af; }
-    .c-string { color: #a6e3a1; }
-    .c-func { color: #89b4fa; }
-    .c-comment { color: #6c7086; font-style: italic; }
+
+    .brand span {
+      color: var(--muted);
+    }
+
+    /* Hero / Content */
+    main {
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--fg);
+    }
+
+    p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--green);
+      border-radius: 50%;
+    }
+
+    .meta-list {
+      border: 1px solid var(--border);
+      background: var(--bg-dark);
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+      list-style: none;
+    }
+
+    .meta-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .meta-key {
+      color: var(--yellow);
+      width: 90px;
+    }
+
+    /* Neovim Command Line Style Footer Bar */
+    .cmd-line {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+
+    .cmd-mode {
+      background: var(--accent);
+      color: var(--bg-dark);
+      padding: 0 6px;
+      font-weight: 700;
+    }
+
+    footer {
+      padding-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
   </style>
 </head>
 <body>
-  <div class="topline"></div>
-  <header class="nav shell">
-    <a class="brand" href="#home" aria-label="TurboMaxe home"><span class="brand-mark">T<span>_</span></span><span>turbomaxe<span class="muted">.dev</span></span></a>
-    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">[ menu ]</button>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#home">home</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero shell" id="home">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> Scalable software solutions <span class="eyebrow-line"></span></div>
-        <h1>Bukkit Plugin Development<br><span class="accent"></span></h1>
-        <p class="hero-lede">Specialising in both Kotlin and Java for high-performance Paper plugin development.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#home">Get in touch <span>↗</span></a>
-        </div>
+  <div class="shell">
+    <header>
+      <div class="brand">turbomaxe<span>.dev</span></div>
+      <nav>
+        <a href="https://github.com/TurboMaxe" target="_blank" rel="noreferrer">github ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="status-bar">
+        <span class="status-dot"></span>
+        <span>available for projects</span>
       </div>
-      <div class="hero-art" aria-label="Neovim editor interface">
-        <div class="nvim-window">
-          <div class="nvim-tabline">
-            <div class="nvim-tab"><span>📄 Plugin.kt</span></div>
-          </div>
-          <div class="nvim-body">
-            <div class="nvim-sidebar">
-              <div class="dir">📁 src/main/kotlin</div>
-              <div class="file">📄 Plugin.kt</div>
-              <div class="file" style="color: #6c7086;">📄 Config.kt</div>
-            </div>
-            <div class="nvim-code-area">
-              <div class="nvim-row"><span class="nvim-ln">1</span><code><span class="c-keyword">package</span> io.turbo.plugin</code></div>
-              <div class="nvim-row"><span class="nvim-ln">2</span><code></code></div>
-              <div class="nvim-row"><span class="nvim-ln">3</span><code><span class="c-keyword">class</span> <span class="c-class">Plugin</span> : <span class="c-class">JavaPlugin</span>() {</code></div>
-              <div class="nvim-row"><span class="nvim-ln">4</span><code>&nbsp;&nbsp;<span class="c-keyword">override fun</span> <span class="c-func">onEnable</span>() {</code></div>
-              <div class="nvim-row"><span class="nvim-ln">5</span><code>&nbsp;&nbsp;&nbsp;&nbsp;logger.info(<span class="c-string">"System operational."</span>)</code></div>
-              <div class="nvim-row"><span class="nvim-ln">6</span><code>&nbsp;&nbsp;}</code></div>
-              <div class="nvim-row"><span class="nvim-ln">7</span><code>}</code></div>
-            </div>
-          </div>
-          <div class="nvim-statusline">
-            <div><span class="status-mode">NORMAL</span> <span>lua/plugin.kt</span></div>
-            <div>utf-8 │ kotlin │ 7:1</div>
-          </div>
-        </div>
-        <div class="art-note note-top"><span class="note-symbol">✳</span> purpose-built systems</div>
-        <div class="art-note note-bottom"><span class="note-symbol">⌘</span> less noise. more craft.</div>
-        <div class="art-grid"></div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer shell">
-    <a class="brand footer-brand" href="#home"><span class="brand-mark">T<span>_</span></span><span>turbomaxe<span class="muted">.dev</span></span></a>
-    <span class="footer-note">DESIGNED IN TEXT. BUILT WITH PURPOSE.</span>
-    <a class="back-top" href="#home">BACK TO TOP ↑</a>
-    <span class="copyright">© <span id="year"></span> TURBOMAXE</span>
-  </footer>
-  <script src="script.js"></script>
+
+      <h1>Bukkit & Paper Plugin Development</h1>
+      <p>Specializing in Kotlin and Java systems for server-side engineering.</p>
+
+      <ul class="meta-list">
+        <li><span class="meta-key">stack</span> <span>Java, Kotlin, Paper API</span></li>
+        <li><span class="meta-key">focus</span> <span>Performance, Maintainability, Custom Logic</span></li>
+      </ul>
+    </main>
+
+    <div class="cmd-line">
+      <div><span class="cmd-mode">NORMAL</span> <span>index.html</span></div>
+      <div>utf-8 [unix]</div>
+    </div>
+
+    <footer>
+      <span>© TURBOMAXE</span>
+      <a href="mailto:contact@turbomaxe.dev">contact@turbomaxe.dev</a>
+    </footer>
+  </div>
+
 </body>
 </html>
