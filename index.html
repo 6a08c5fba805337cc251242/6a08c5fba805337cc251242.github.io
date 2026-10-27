@@ -90,4 +90,141 @@
 
     p {
       color: var(--muted);
-      margin-bottom
+      margin-bottom: 24px;
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--green);
+      border-radius: 50%;
+    }
+
+    .meta-list {
+      border: 1px solid var(--border);
+      background: var(--bg-dark);
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+      list-style: none;
+    }
+
+    .meta-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .meta-key {
+      color: var(--yellow);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    /* Neovim Command Line Style Footer Bar */
+    .cmd-line {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+
+    .cmd-mode {
+      background: var(--accent);
+      color: var(--bg-dark);
+      padding: 0 6px;
+      font-weight: 700;
+    }
+
+    footer {
+      padding-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 480px) {
+      .meta-list li {
+        align-items: flex-start;
+      }
+
+      .meta-key {
+        width: 80px;
+      }
+
+      .cmd-line {
+        gap: 8px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">turbomaxe<span>.dev</span></div>
+
+      <nav>
+        <a href="https://github.com/TurboMaxe" target="_blank" rel="noopener noreferrer">github ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="status-bar">
+        <span class="status-dot"></span>
+        <span>possibly available for development</span>
+      </div>
+
+      <h1>Bukkit Plugin Development</h1>
+
+      <p>Primarily focusing on Kotlin and Java projects involving scalable software systems.</p>
+
+      <ul class="meta-list">
+        <li>
+          <span class="meta-key">stack[]</span>
+          <span>{"Java", "Kotlin", "Paper API"}</span>
+        </li>
+
+        <li>
+          <span class="meta-key">focus</span>
+          <span>Modular software utilising domains.</span>
+        </li>
+
+        <li>
+          <span class="meta-key">other[]</span>
+          <span>{"Git", "Gradle", "C", "Lua", "Linux"}</span>
+        </li>
+      </ul>
+    </main>
+
+    <div class="cmd-line">
+      <div><span class="cmd-mode">NORMAL</span> <span>index.html</span></div>
+      <div>utf-8 [unix]</div>
+    </div>
+
+    <footer>
+      <a href="mailto:contact@turbomaxe.dev">Scalable Software Solutions</a>
+      <a href="mailto:contact@turbomaxe.dev">contact@turbomaxe.dev</a>
+    </footer>
+  </div>
+</body>
+</html>
+```
