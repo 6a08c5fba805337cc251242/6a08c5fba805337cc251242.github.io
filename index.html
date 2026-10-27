@@ -24,22 +24,21 @@
   <main>
     <section class="hero shell" id="home">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> AVAILABLE FOR SELECT PROJECTS <span class="eyebrow-line"></span> 2026</div>
-        <h1>I build things<br>for <span class="accent">Minecraft.</span></h1>
-        <p class="hero-lede">Plugins, server systems, and developer tools — engineered to be useful, fast, and maintainable.</p>
+        <div class="eyebrow"><span class="status-dot"></span>Scalable software solutions<span class="eyebrow-line"></span></div>
+        <h1>Bukkit Plugin Development.<br><span class="accent"></span></h1>
+        <p class="hero-lede">Specialising in both kotlin and java for paper plugin development.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#home">Get in touch <span>↘</span></a>
         </div>
-        <div class="hero-meta"><span><span class="meta-key">FOCUS</span> Paper / Bukkit</span><span><span class="meta-key">LANGUAGE</span> Java</span><span><span class="meta-key">MODE</span> Build & learn</span></div>
-      </div>
+        </div>
       <div class="hero-art" aria-label="Decorative code window">
         <div class="code-window">
           <div class="window-bar"><div class="window-dots"><i></i><i></i><i></i></div><span>Plugin.java</span><span class="window-state">● synced</span></div>
           <div class="code-body">
             <div class="code-row"><span class="ln">01</span><code><b class="purple">public final class</b> <b class="green">Plugin</b> {</code></div>
             <div class="code-row"><span class="ln">02</span><code>&nbsp;&nbsp;<b class="purple">public void</b> onEnable() {</code></div>
-            <div class="code-row"><span class="ln">03</span><code>&nbsp;&nbsp;&nbsp;&nbsp;server.<b class="blue">register</b>(features);</code></div>
-            <div class="code-row"><span class="ln">04</span><code>&nbsp;&nbsp;&nbsp;&nbsp;systems.<b class="blue">start</b>();</code></div>
+            <div class="code-row"><span class="ln">03</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<b class="blue"></b>instance = this;</code></div>
+            <div class="code-row"><span class="ln">04</span><code>&nbsp;&nbsp;&nbsp;&nbsp;Bukkit.getConsoleSender().<b class="blue">sendMessage</b>("Loaded server!");</code></div>
             <div class="code-row"><span class="ln">05</span><code>&nbsp;&nbsp;}</code></div>
             <div class="code-row"><span class="ln">06</span><code>}</code></div>
             <div class="code-cursor"></div>
@@ -50,13 +49,8 @@
         <div class="art-note note-bottom"><span class="note-symbol">⌘</span> less noise. more craft.</div>
         <div class="art-grid"></div>
       </div>
-      <div class="hero-index"><span>01 / INTRODUCTION</span></div>
-    </section>
-
-    <section class="ticker" aria-label="Areas of focus"><div class="ticker-track"><span>PLUGIN DEVELOPMENT</span><b>✳</b><span>SERVER ENGINEERING</span><b>✳</b><span>DEVELOPER TOOLS</span><b>✳</b><span>JAVA ECOSYSTEM</span><b>✳</b><span>PLUGIN DEVELOPMENT</span><b>✳</b><span>SERVER ENGINEERING</span><b>✳</b></div></section>
+     </section>
   </main>
-
-  <footer class="footer shell"><a class="brand footer-brand" href="#home"><span class="brand-mark">T<span>_</span></span><span>turbomaxe<span class="muted">.dev</span></span></a><span class="footer-note">DESIGNED IN TEXT. BUILT WITH PURPOSE.</span><a class="back-top" href="#home">BACK TO TOP ↑</a><span class="copyright">© <span id="year"></span> TURBOMAXE</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
